@@ -1,0 +1,6 @@
+instagram:
+  api:
+    key:
+    secret:
+    callback:
+    authorizationUrl:
