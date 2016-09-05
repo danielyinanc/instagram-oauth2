@@ -16,7 +16,9 @@ import java.io.IOException;
 
 @RestController
 public class CallbackUrl {
-    @Value("${instagram.api.key}")
+    private static String accessToken;
+
+        @Value("${instagram.api.key}")
     private String INSTAGRAM_API_KEY;
 
     @Value("${instagram.api.secret}")
@@ -41,8 +43,10 @@ public class CallbackUrl {
 
     @RequestMapping(value="/callbackUrl")
     public void callbackAnswer(@RequestParam("code") String code) throws IOException {
-        System.out.println(INSTAGRAM_API_KEY);
+        accessToken = service.getAccessToken(code).getAccessToken();
+    }
 
-        System.out.println(service.getAccessToken(code));
+    public static String getAccessToken(){
+        return accessToken;
     }
 }
